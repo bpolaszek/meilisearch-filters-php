@@ -13,6 +13,16 @@ final class NotExpression extends Expression
     ) {
     }
 
+    public function and(Expression $expression, Expression ...$expressions): Expression
+    {
+        return $this->group()->and($expression, ...$expressions);
+    }
+
+    public function or(Expression $expression, Expression ...$expressions): Expression
+    {
+        return $this->group()->or($expression, ...$expressions);
+    }
+
     public function negate(): Expression
     {
         return $this->expression;

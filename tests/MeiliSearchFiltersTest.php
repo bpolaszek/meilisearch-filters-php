@@ -144,6 +144,20 @@ describe('IN filter', function () {
     });
 });
 
+describe('hasAll / hasNone filter', function () {
+    $color = field('color');
+
+    it('stringifies the filter', function () use ($color) {
+        $expression = $color->hasAll(['blue', 'green']);
+        expect((string) $expression)->toEqual("color = 'blue' AND color = 'green'");
+    });
+
+    it('stringifies the negated filter', function () use ($color) {
+        $expression = $color->hasNone(['blue', 'green']);
+        expect((string) $expression)->toEqual("NOT (color = 'blue' AND color = 'green')");
+    });
+});
+
 describe('OR filter', function () {
     $cat = field('cat');
     $expression = $cat->equals('Berlioz')->or($cat->equals("O'Malley"));

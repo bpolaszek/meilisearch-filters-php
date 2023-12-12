@@ -7,6 +7,7 @@ namespace Bentools\MeilisearchFilters;
 use IteratorAggregate;
 use Traversable;
 
+use function array_map;
 use function implode;
 
 /**
@@ -21,10 +22,9 @@ final readonly class Expressions implements IteratorAggregate
      */
     private array $expressions;
 
-    public function __construct(
-        Expression ...$expressions
-    ) {
-        $this->expressions = $expressions;
+    public function __construct(Expression ...$expressions)
+    {
+        $this->expressions = array_map($this->groupIfNecessary(...), $expressions);
     }
 
     public function join(string $delimiter): string
@@ -35,5 +35,10 @@ final readonly class Expressions implements IteratorAggregate
     public function getIterator(): Traversable
     {
         yield from $this->expressions;
+    }
+
+    private function groupIfNecessary(Expression $expression): Expression
+    {
+        return $expression instanceof CompositeExpression ? $expression->group() : $expression;
     }
 }

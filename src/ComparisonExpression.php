@@ -6,13 +6,14 @@ namespace Bentools\MeilisearchFilters;
 
 use function sprintf;
 
-final class ComparisonExpression extends Expression
+final class ComparisonExpression extends FieldExpression
 {
     public function __construct(
-        public readonly string $field,
+        string $field,
         public readonly mixed $value,
         public readonly ComparisonOperator $operator = ComparisonOperator::EQUALS,
     ) {
+        parent::__construct($field);
     }
 
     public function negate(): Expression

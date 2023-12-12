@@ -6,12 +6,13 @@ namespace Bentools\MeilisearchFilters;
 
 use function sprintf;
 
-class ExistsExpression extends Expression
+class ExistsExpression extends FieldExpression
 {
     public function __construct(
-        public readonly string $field,
+        string $field,
         public readonly bool $negated = false,
     ) {
+        parent::__construct($field);
     }
 
     public function negate(): Expression

@@ -7,16 +7,17 @@ namespace Bentools\MeilisearchFilters;
 use function implode;
 use function sprintf;
 
-class InExpression extends Expression
+class InExpression extends FieldExpression
 {
     /**
      * @param array<mixed> $values
      */
     public function __construct(
-        public readonly string $field,
+        string $field,
         public readonly array $values,
         public readonly bool $negated = false,
     ) {
+        parent::__construct($field);
     }
 
     public function negate(): self

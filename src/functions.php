@@ -31,6 +31,11 @@ function escape(string|float|int|bool|Stringable|array $value): string|array
     return sprintf('\'%s\'', addslashes((string) $value));
 }
 
+function filterBuilder(Expression ...$expressions): Expression
+{
+    return [] === $expressions ? new EmptyExpression() : new AndExpression(new Expressions(...$expressions));
+}
+
 function field(string $field): Field
 {
     return new Field($field);

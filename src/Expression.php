@@ -8,22 +8,14 @@ use Stringable;
 
 abstract class Expression implements Stringable
 {
-    public function and(Expression $expression): AndExpression
+    public function and(Expression $expression, Expression ...$expressions): Expression
     {
-        if ($expression instanceof CompositeExpression) {
-            $expression = $expression->group();
-        }
-
-        return new AndExpression(new Expressions($this, $expression));
+        return new AndExpression(new Expressions($this, $expression, ...$expressions));
     }
 
-    public function or(Expression $expression): OrExpression
+    public function or(Expression $expression, Expression ...$expressions): Expression
     {
-        if ($expression instanceof CompositeExpression) {
-            $expression = $expression->group();
-        }
-
-        return new OrExpression(new Expressions($this, $expression));
+        return new OrExpression(new Expressions($this, $expression, ...$expressions));
     }
 
     public function negate(): Expression
@@ -31,7 +23,7 @@ abstract class Expression implements Stringable
         return new NotExpression($this);
     }
 
-    public function group(): GroupExpression
+    public function group(): Expression
     {
         return new GroupExpression($this);
     }

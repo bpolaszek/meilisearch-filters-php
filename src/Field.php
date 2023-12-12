@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bentools\MeilisearchFilters;
 
+use function array_map;
+
 /**
  * @internal
  */
@@ -107,5 +109,21 @@ final readonly class Field
     public function isNotIn(array $values): Expression
     {
         return $this->isIn($values)->negate();
+    }
+
+    /**
+     * @param list<mixed> $values
+     */
+    public function hasAll(array $values): Expression
+    {
+        return new AndExpression(new Expressions(...array_map(fn (mixed $value) => $this->equals($value), $values)));
+    }
+
+    /**
+     * @param list<mixed> $values
+     */
+    public function hasNone(array $values): Expression
+    {
+        return $this->hasAll($values)->negate();
     }
 }

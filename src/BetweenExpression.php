@@ -6,13 +6,14 @@ namespace Bentools\MeilisearchFilters;
 
 use function sprintf;
 
-class BetweenExpression extends Expression
+class BetweenExpression extends FieldExpression
 {
     public function __construct(
-        public readonly string $field,
+        string $field,
         public readonly mixed $left,
         public readonly mixed $right,
     ) {
+        parent::__construct($field);
     }
 
     public function __toString(): string

@@ -7,7 +7,9 @@ namespace Bentools\MeilisearchFilters;
 use IteratorAggregate;
 use Traversable;
 
+use function array_filter;
 use function array_map;
+use function array_values;
 use function implode;
 
 /**
@@ -24,6 +26,9 @@ final readonly class Expressions implements IteratorAggregate
 
     public function __construct(Expression ...$expressions)
     {
+        $expressions = array_values(
+            array_filter($expressions, fn (Expression $expression) => !$expression instanceof EmptyExpression)
+        );
         $this->expressions = array_map($this->groupIfNecessary(...), $expressions);
     }
 

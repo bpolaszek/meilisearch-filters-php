@@ -24,4 +24,9 @@ final class GeoRadiusExpression extends Expression
     {
         return sprintf('_geoRadius(%s, %s)', $this->coordinates, $this->distanceInmeters);
     }
+
+    public function count(): int
+    {
+        return 1;
+    }
 }

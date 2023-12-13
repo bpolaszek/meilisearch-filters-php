@@ -21,4 +21,9 @@ final class GroupExpression extends Expression
 
         return sprintf('(%s)', $this->expression);
     }
+
+    public function count(): int
+    {
+        return $this->expression->count();
+    }
 }

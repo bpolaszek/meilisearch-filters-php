@@ -8,4 +8,9 @@ abstract class FieldExpression extends Expression
         public readonly string $field,
     ) {
     }
+
+    public function count(): int
+    {
+        return 1;
+    }
 }

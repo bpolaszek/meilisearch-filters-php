@@ -7,7 +7,7 @@ namespace Bentools\MeilisearchFilters;
 use function implode;
 use function sprintf;
 
-class InExpression extends FieldExpression
+final class InExpression extends FieldExpression
 {
     /**
      * @param array<mixed> $values

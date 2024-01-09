@@ -6,7 +6,7 @@ namespace Bentools\MeilisearchFilters;
 
 use function sprintf;
 
-class BetweenExpression extends FieldExpression
+final class BetweenExpression extends FieldExpression
 {
     public function __construct(
         string $field,

@@ -6,7 +6,7 @@ namespace Bentools\MeilisearchFilters;
 
 use function sprintf;
 
-class IsNullExpression extends FieldExpression
+final class IsNullExpression extends FieldExpression
 {
     public function __construct(
         string $field,

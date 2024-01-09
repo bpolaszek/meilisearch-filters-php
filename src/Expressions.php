@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bentools\MeilisearchFilters;
 
+use Countable;
 use IteratorAggregate;
 use Traversable;
 
@@ -18,7 +19,7 @@ use function implode;
  *
  * @implements IteratorAggregate<Expression>
  */
-final readonly class Expressions implements IteratorAggregate, \Countable
+final readonly class Expressions implements IteratorAggregate, Countable
 {
     /**
      * @var Expression[]

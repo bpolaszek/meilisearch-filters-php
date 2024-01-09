@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Bentools\MeilisearchFilters;
 
+use Countable;
 use IteratorAggregate;
 use Traversable;
 
 use function array_filter;
 use function array_map;
 use function array_values;
+use function count;
 use function implode;
 
 /**
@@ -17,7 +19,7 @@ use function implode;
  *
  * @implements IteratorAggregate<Expression>
  */
-final readonly class Expressions implements IteratorAggregate
+final readonly class Expressions implements IteratorAggregate, Countable
 {
     /**
      * @var Expression[]
@@ -45,5 +47,10 @@ final readonly class Expressions implements IteratorAggregate
     private function groupIfNecessary(Expression $expression): Expression
     {
         return $expression instanceof CompositeExpression ? $expression->group() : $expression;
+    }
+
+    public function count(): int
+    {
+        return count($this->expressions);
     }
 }

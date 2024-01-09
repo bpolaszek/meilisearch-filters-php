@@ -32,4 +32,9 @@ final class NotExpression extends Expression
     {
         return sprintf('NOT %s', $this->expression);
     }
+
+    public function count(): int
+    {
+        return $this->expression->count();
+    }
 }

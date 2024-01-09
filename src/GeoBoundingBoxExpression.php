@@ -17,4 +17,9 @@ final class GeoBoundingBoxExpression extends Expression
     {
         return sprintf('_geoBoundingBox(%s)', $this->boundingBox);
     }
+
+    public function count(): int
+    {
+        return 1;
+    }
 }

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Bentools\MeilisearchFilters;
 
+use Countable;
 use Stringable;
 
-abstract class Expression implements Stringable
+abstract class Expression implements Countable, Stringable
 {
     public function and(Expression $expression, Expression ...$expressions): Expression
     {

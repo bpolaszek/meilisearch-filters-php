@@ -28,4 +28,9 @@ final class EmptyExpression extends Expression
     {
         return $this;
     }
+
+    public function count(): int
+    {
+        return 0;
+    }
 }

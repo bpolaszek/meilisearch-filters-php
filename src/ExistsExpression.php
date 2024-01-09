@@ -6,7 +6,7 @@ namespace Bentools\MeilisearchFilters;
 
 use function sprintf;
 
-class ExistsExpression extends FieldExpression
+final class ExistsExpression extends FieldExpression
 {
     public function __construct(
         string $field,

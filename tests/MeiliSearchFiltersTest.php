@@ -182,6 +182,34 @@ describe('hasAll / hasNone filter', function () {
     });
 });
 
+describe('CONTAINS filter', function () {
+    it('stringifies the filter', function () {
+        $expression = field('cat')->contains('Berlioz');
+        expect((string) $expression)->toEqual("cat CONTAINS 'Berlioz'")
+            ->and($expression)->toHaveCount(1);
+    });
+
+    it('stringifies the negated filter', function () {
+        $expression = field('cat')->doesNotContain('Berlioz');
+        expect((string) $expression)->toEqual("cat NOT CONTAINS 'Berlioz'")
+            ->and($expression)->toHaveCount(1);
+    });
+});
+
+describe('STARTS WITH filter', function () {
+    it('stringifies the filter', function () {
+        $expression = field('cat')->startsWith('Ber');
+        expect((string) $expression)->toEqual("cat STARTS WITH 'Ber'")
+            ->and($expression)->toHaveCount(1);
+    });
+
+    it('stringifies the negated filter', function () {
+        $expression = field('cat')->doesNotStartWith('Ber');
+        expect((string) $expression)->toEqual("cat NOT STARTS WITH 'Ber'")
+            ->and($expression)->toHaveCount(1);
+    });
+});
+
 describe('OR filter', function () {
     $cat = field('cat');
     $expression = $cat->equals('Berlioz')->or($cat->equals("O'Malley"));

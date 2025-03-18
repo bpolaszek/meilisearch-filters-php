@@ -124,4 +124,24 @@ final readonly class Field
     {
         return $this->hasAll($values)->negate();
     }
+
+    public function contains(mixed $value): Expression
+    {
+        return new ContainsExpression($this->field, $value);
+    }
+
+    public function doesNotContain(mixed $value): Expression
+    {
+        return $this->contains($value)->negate();
+    }
+
+    public function startsWith(mixed $value): Expression
+    {
+        return new StartsWithExpression($this->field, $value);
+    }
+
+    public function doesNotStartWith(mixed $value): Expression
+    {
+        return $this->startsWith($value)->negate();
+    }
 }

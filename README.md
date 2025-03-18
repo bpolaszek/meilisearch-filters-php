@@ -77,6 +77,26 @@ echo $cat->isIn(['Berlioz', "O'Malley"]); // cat IN ['Berlioz', 'O\\'Malley']
 echo $cat->isNotIn(['Berlioz', "O'Malley"]); // cat NOT IN ['Berlioz', 'O\\'Malley']
 ```
 
+### CONTAINS filter
+
+```php
+use function Bentools\MeilisearchFilters\field;
+
+$cat = field('cat')
+echo $cat->contains('Berlioz'); // cat CONTAINS 'Berlioz'
+echo $cat->doesNotContain('Berlioz'); // cat NOT CONTAINS 'Berlioz'
+```
+
+### STARTS WITH filter
+
+```php
+use function Bentools\MeilisearchFilters\field;
+
+$cat = field('cat')
+echo $cat->startWith('Ber'); // cat STARTS WITH 'Ber'
+echo $cat->doesNotStartWith('Ber'); // cat NOT STARTS WITH 'Ber'
+```
+
 ### Geographic filters
 
 ```php

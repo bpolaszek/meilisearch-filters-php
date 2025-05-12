@@ -11,12 +11,12 @@ final class EmptyExpression extends Expression
 
     public function and(Expression $expression, Expression ...$expressions): Expression
     {
-        return [] === $expressions ? $expression : new AndExpression(new Expressions(...$expressions));
+        return [] === $expressions ? $expression : new AndExpression(new Expressions($expression, ...$expressions));
     }
 
     public function or(Expression $expression, Expression ...$expressions): Expression
     {
-        return [] === $expressions ? $expression : new OrExpression(new Expressions(...$expressions));
+        return [] === $expressions ? $expression : new OrExpression(new Expressions($expression, ...$expressions));
     }
 
     public function negate(): Expression
